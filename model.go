@@ -35,6 +35,16 @@ type Wave struct {
 	// Pitch  float64 //TODO
 }
 
+type Speaker interface {
+	SetLang(string) *Wave
+	SetText(string) *Wave
+	SetGender(tts.SsmlVoiceGender) *Wave
+	SetRate(float642 float64) *Wave
+	Fetch() (Res, error)
+}
+
+var _ Speaker = (*Wave) (nil)
+
 //Res Response from the Cloud API
 type Res struct {
 	*tts.SynthesizeSpeechResponse
